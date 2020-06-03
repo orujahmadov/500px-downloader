@@ -4,8 +4,23 @@ const sleep = (time) => {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
+const getRoot = () => {
+  return document.getElementById('pxLightbox-1') || document.getElementById('root');
+}
+
+const getImageTitle = (root) => {
+  let imageTitle = null;
+  /* Try to get title of photo */
+  const h3Elements = root.getElementsByTagName('H3');
+  if (h3Elements.length > 0) {
+    imageTitle = h3Elements[0].innerHTML;
+  }
+
+  return imageTitle || '500px';
+}
+
 const attachDownloadButton = () => {
-  const root = document.getElementById('pxLightbox-1') || document.getElementById('root');
+  const root = getRoot();
   
   if (root) {
     const button = document.createElement("BUTTON");
@@ -22,7 +37,7 @@ const attachDownloadButton = () => {
     button.style.zIndex = 100;
     button.addEventListener('click', () => {
       const imageAddress = document.querySelector('.photo-show__img').src;
-      chrome.runtime.sendMessage({"message": "download_image", "url": imageAddress, "title": 'some-title'});
+      chrome.runtime.sendMessage({"message": "download_image", "url": imageAddress, "title": getImageTitle(root)});
     });
     root.appendChild(button);
   }
@@ -54,8 +69,9 @@ observer.observe(targetNode, config);
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "clicked_browser_action" ) {
+      const root = getRoot();
       const imageAddress = document.querySelector('.photo-show__img').src;
-      chrome.runtime.sendMessage({"message": "download_image", "url": imageAddress, "title": request.title});
+      chrome.runtime.sendMessage({"message": "download_image", "url": imageAddress, "title": getImageTitle(root)});
     }
   }
 );
