@@ -32,6 +32,10 @@ const attachDownloadButton = () => {
     button.style.color = 'black';
     button.style.cursor = 'pointer';
     button.style.zIndex = 100;
+    button.title = 'Added by 500px Downloader Extension';
+    button.addEventListener("focus", function () {
+      this.style.outline = "0px";  
+    });
     button.addEventListener('click', () => {
       const imageAddress = document.querySelector('.photo-show__img').src;
       chrome.runtime.sendMessage({"message": "download_image", "url": imageAddress, "title": getImageTitle(root)});
