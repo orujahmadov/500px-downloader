@@ -1,4 +1,5 @@
 const DOWNLOAD_BUTTON_ID = 'extension-button-attached';
+const REGEX_URL = '500px.com\/photo\/*';
 
 const sleep = (time) => {
   return new Promise((resolve) => setTimeout(resolve, time));
@@ -53,8 +54,9 @@ var detectionCount = 0;
 // Callback function to execute when mutations are observed
 const callback = function(mutationsList, observer) {
   const downloadButton = document.getElementById(DOWNLOAD_BUTTON_ID);
-  if (!downloadButton) {
-    sleep(500).then(() => {
+  const matches = window.location.href.match(REGEX_URL);
+  if (!downloadButton && matches) {
+    sleep(100).then(() => {
       attachDownloadButton()
     });
   }
