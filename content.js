@@ -55,10 +55,12 @@ var detectionCount = 0;
 const callback = function(mutationsList, observer) {
   const downloadButton = document.getElementById(DOWNLOAD_BUTTON_ID);
   const matches = window.location.href.match(REGEX_URL);
-  if (!downloadButton && matches) {
+  if (matches && !downloadButton) {
     sleep(100).then(() => {
       attachDownloadButton()
     });
+  } else if (!matches && downloadButton) {
+    downloadButton.remove();
   }
 };
 
