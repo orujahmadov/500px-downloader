@@ -1,10 +1,6 @@
 const DOWNLOAD_BUTTON_ID = 'extension-button-attached';
 const REGEX_URL = '500px.com\/photo\/*';
 
-const sleep = (time) => {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
-
 const getRoot = () => {
   return document.getElementById('pxLightbox-1') || document.getElementById('root');
 }
@@ -56,9 +52,7 @@ const callback = function(mutationsList, observer) {
   const downloadButton = document.getElementById(DOWNLOAD_BUTTON_ID);
   const matches = window.location.href.match(REGEX_URL);
   if (matches && !downloadButton) {
-    sleep(100).then(() => {
-      attachDownloadButton()
-    });
+    attachDownloadButton();
   } else if (!matches && downloadButton) {
     downloadButton.remove();
   }
