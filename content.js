@@ -21,7 +21,7 @@ const attachDownloadButton = () => {
   
   if (root) {
     const button = document.createElement("BUTTON");
-    const text = document.createTextNode("Download");
+    const text = document.createTextNode(chrome.i18n.getMessage("download_button"));
     button.appendChild(text);
     button.id = DOWNLOAD_BUTTON_ID;
     button.style.position = 'absolute';
