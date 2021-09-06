@@ -18,7 +18,7 @@ const getImageTitle = (root) => {
 
 const attachDownloadButton = () => {
   const root = getRoot();
-  
+
   if (root) {
     const button = document.createElement("BUTTON");
     const text = document.createTextNode(chrome.i18n.getMessage("download_button"));
@@ -28,9 +28,11 @@ const attachDownloadButton = () => {
     button.style.top = '65%';
     button.style.right = '25px';
     button.style.border = '0px';
-    button.style.padding = '10px';
-    button.style.color = 'black';
+    button.style.padding = '15px';
+    button.style.borderRadius = '5px';
+    button.style.color = 'white';
     button.style.cursor = 'pointer';
+    button.style.backgroundColor = 'black';
     button.style.zIndex = 100;
     button.title = 'Added by 500px Downloader Extension';
     button.addEventListener("focus", function () {
@@ -44,15 +46,8 @@ const attachDownloadButton = () => {
   }
 }
 
-// Select the node that will be observed for mutations
-const targetNode = document.getElementsByTagName('body')[0];
-
-// Options for the observer (which mutations to observe)
-const config = { attributes: true, childList: true, subtree: true };
-
-var detectionCount = 0;
 // Callback function to execute when mutations are observed
-const callback = function(mutationsList, observer) {
+const callback = function(_, _) {
   const downloadButton = document.getElementById(DOWNLOAD_BUTTON_ID);
   const matches = window.location.href.match(REGEX_URL);
   if (matches && !downloadButton) {
@@ -64,6 +59,10 @@ const callback = function(mutationsList, observer) {
 
 // Create an observer instance linked to the callback function
 const observer = new MutationObserver(callback);
+// Select the node that will be observed for mutations
+const targetNode = document.getElementsByTagName('body')[0];
+// Options for the observer (which mutations to observe)
+const config = { attributes: true, childList: true, subtree: true };
 
 // Start observing the target node for configured mutations
 observer.observe(targetNode, config);
