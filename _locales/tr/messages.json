@@ -1,5 +1,8 @@
 {
     "download_button": {
       "message": "Indir"
+    },
+    "button_tooltip": {
+      "message": "500px Downloader Uzantısı tarafından eklenmişdir"
     }
 }

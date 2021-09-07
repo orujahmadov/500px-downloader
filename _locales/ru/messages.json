@@ -1,5 +1,8 @@
 {
     "download_button": {
       "message": "Скачать"
+    },
+    "button_tooltip": {
+      "message": "Добавлено расширением 500px Downloader"
     }
 }
