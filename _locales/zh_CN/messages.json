@@ -1,5 +1,8 @@
 {
     "download_button": {
       "message": "下载"
+    },
+    "button_tooltip": {
+      "message": "由 500px Downloader 扩展添加"
     }
 }

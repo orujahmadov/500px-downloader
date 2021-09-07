@@ -1,5 +1,8 @@
 {
     "download_button": {
       "message": "Download"
+    },
+    "button_tooltip": {
+      "message": "Added by 500px Downloader Extension"
     }
 }

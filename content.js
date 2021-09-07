@@ -26,8 +26,7 @@ function attachDownloadButton(parent) {
     button.style.color = 'white';
     button.style.cursor = 'pointer';
     button.style.backgroundColor = 'deepskyblue';
-    button.style.zIndex = 100;
-    button.title = 'Added by 500px Downloader Extension';
+    button.title = chrome.i18n.getMessage("button_tooltip");
     button.addEventListener("focus", function () {
       this.style.outline = "0px";  
     });
